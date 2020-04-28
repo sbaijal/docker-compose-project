@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  dbos:
+    image: mysql:5.7
+    volumes :
+      - mydb1:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_USER: soham
+      MYSQL_PASSWORD: soham
+      MYSQL_DATABASE: mydb
+
+
+
+  joomla: 
+    image: joomla:3.9.3-php7.3
+    restart: always
+    depends_on: 
+      - dbos
+    ports:
+      - 8080:80
+    environment:
+      JOOMLA_DB_HOST: dbos
+      JOOMLA_DB_USER: soham
+      JOOMLA_DB_PASSWORD: soham
+      JOOMLA_DB_NAME: mydb
+    volumes:
+      - myjoom1:/var/www/html
+
+
+volumes:
+  mydb1:
+  myjoom1:
+
+
+
+
