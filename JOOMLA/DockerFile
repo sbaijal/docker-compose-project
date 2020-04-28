@@ -1,0 +1,3 @@
+FROM hub.docker.com
+
+PULL  docker pull joomla:3.9.3-php7.3
